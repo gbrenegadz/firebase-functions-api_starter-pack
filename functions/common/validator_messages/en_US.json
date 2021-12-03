@@ -1,0 +1,57 @@
+{
+    "email":{
+        "name": "email",
+        "emptyError": "Email is required!",
+        "invalidError": "Invalid email address!"
+    },
+
+    "emailVerified":{
+        "name": "emailVerified",
+        "emptyError": "Email verified is required!",
+        "invalidError": "Invalid email verified!"
+    },
+
+    "contactNumber":{
+        "name": "contactNumber",
+        "emptyError": "Contact number is required!",
+        "invalidError": "Invalid contact number!"
+    },
+
+    "displayName":{
+        "name": "displayName",
+        "emptyError": "Display name is required!",
+        "invalidError": "Invalid display name!",
+        "lengthError": "Invalid display name length! Must be more than 3 and less than 30 characters."
+    },
+
+    "firstName":{
+        "name": "firstName",
+        "emptyError": "First name is required!",
+        "invalidError": "Invalid first name!",
+        "lengthError": "Invalid first name length! Must be more than 1 and less than 30 characters."
+    },
+
+    "lastName":{
+        "name": "lastName",
+        "emptyError": "Last name is required!",
+        "invalidError": "Invalid last name!",
+        "lengthError": "Invalid last name length! Must be more than 1 and less than 30 characters."
+    },
+
+    "middleName":{
+        "name": "middleName",
+        "emptyError": "Middle name is required!",
+        "invalidError": "Invalid middle name!",
+        "lengthError": "Invalid middle name length! Must be more than 1 and less than 30 characters."
+    },
+
+    "companyName":{
+        "name": "company.*.name",
+        "invalidError": "Invalid company id!"
+    },
+
+    "imageUrl":{
+        "name": "imageUrl",
+        "invalidError": "Invalid url!"
+    }
+}

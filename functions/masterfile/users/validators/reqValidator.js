@@ -1,0 +1,151 @@
+const { check, validationResult } = require('express-validator');
+const Constants = require('../../../common/validator_messages/en_US.json');
+
+
+exports.requestValidator = [
+    check(Constants.email.name)
+      .trim()
+      .escape()
+      .not()
+      .isEmpty()
+      .withMessage(Constants.email.emptyError)
+      .bail()
+      .normalizeEmail()
+      .isEmail()
+      .withMessage(Constants.email.invalidError)
+      .bail(),
+
+    check(Constants.emailVerified.name)
+      .trim()
+      .escape()
+      .not()
+      .isEmpty()
+      .withMessage(Constants.emailVerified.emptyError)
+      .bail()
+      .isBoolean()
+      .withMessage(Constants.emailVerified.invalidError)
+      .bail(),
+    
+    check(Constants.contactNumber.name)
+      .trim()
+      .escape()
+      .not()
+      .isEmpty()
+      .withMessage(Constants.contactNumber.emptyError)
+      .bail()
+      .isString()
+      .withMessage(Constants.contactNumber.invalidError)
+      .bail(),
+
+    check(Constants.displayName.name)
+      .trim()
+      .escape()
+      .not()
+      .isEmpty()
+      .withMessage(Constants.displayName.emptyError)
+      .bail()
+      .not()
+      .isInt()
+      .withMessage(Constants.displayName.invalidError)
+      .bail()
+      .not()
+      .isDecimal()
+      .withMessage(Constants.displayName.invalidError)
+      .bail()
+      .not()
+      .isBoolean()
+      .withMessage(Constants.displayName.invalidError)
+      .bail()
+      .isLength({min: 3, max: 30})
+      .withMessage(Constants.displayName.lengthError)
+      .bail(),
+
+    check(Constants.firstName.name)
+      .trim()
+      .escape()
+      .not()
+      .isEmpty()
+      .withMessage(Constants.firstName.emptyError)
+      .bail()
+      .not()
+      .isInt()
+      .withMessage(Constants.firstName.invalidError)
+      .bail()
+      .not()
+      .isDecimal()
+      .withMessage(Constants.firstName.invalidError)
+      .bail()
+      .not()
+      .isBoolean()
+      .withMessage(Constants.firstName.invalidError)
+      .bail()
+      .isLength({min: 1, max: 30})
+      .withMessage(Constants.firstName.lengthError)
+      .bail(),
+
+    check(Constants.lastName.name)
+      .trim()
+      .escape()
+      .not()
+      .isEmpty()
+      .withMessage(Constants.lastName.emptyError)
+      .bail()
+      .not()
+      .isInt()
+      .withMessage(Constants.lastName.invalidError)
+      .bail()
+      .not()
+      .isDecimal()
+      .withMessage(Constants.lastName.invalidError)
+      .bail()
+      .not()
+      .isBoolean()
+      .withMessage(Constants.lastName.invalidError)
+      .bail()
+      .isLength({min: 1, max: 30})
+      .withMessage(Constants.lastName.lengthError)
+      .bail(),
+
+    check(Constants.middleName.name)
+      .trim()
+      .escape()
+      .not()
+      .isEmpty()
+      .withMessage(Constants.middleName.emptyError)
+      .bail()
+      .not()
+      .isDecimal()
+      .withMessage(Constants.middleName.invalidError)
+      .bail()
+      .not()
+      .isBoolean()
+      .withMessage(Constants.middleName.invalidError)
+      .bail()
+      .isLength({min: 1, max: 30})
+      .withMessage(Constants.middleName.lengthError)
+      .bail(),
+
+    check(Constants.companyName.name)
+      .trim()
+      .escape()
+      .isString()
+      .withMessage(Constants.companyName.invalidError)
+      .bail()
+      .not()
+      .isBoolean()
+      .withMessage(Constants.companyName.invalidError)
+      .bail(),
+
+    check(Constants.imageUrl.name)
+      .trim()
+      .isURL({ protocols: ['http','https']})
+      .withMessage(Constants.imageUrl.invalidError)
+      .bail(),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+      return res.status(422).json({errors: errors.array()});
+    next();
+  },
+]
